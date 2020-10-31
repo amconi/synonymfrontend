@@ -1,0 +1,46 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right">
+                <a class="btn btn-outline-secondary btn-block float-right text-left" routerLink="/word/new"><i
+                        class="fa fa-plus" aria-hidden="true"></i> Add new word</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Word</th>
+                        <th>Synonyms</th>
+                        <th class="text-center" style="width: 120px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of synonymGrid">
+                        <td>{{ item.wordText }}</td>
+                        <td>{{ formatTableCell(item.synonyms) }}</td>
+                        <td>
+                            <a class="btn btn-light" [routerLink]="['/word/edit/', item.wordId]" alt="Edit"><i class="fa fa-edit"></i></a>
+                            &nbsp;
+                            <button type="button" class="btn btn-light" (click)="deleteWord(item.wordId)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row float-right">
+    <simple-pager (onPageChanged)="onPageChanged($event)" (onPageSizeChanged)="onPageSizeChanged($event)"
+        [pager]="pager"></simple-pager>
+</div>
+
+<loader *ngIf="showLoading"></loader>

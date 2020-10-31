@@ -1,0 +1,30 @@
+<form [formGroup]="filterForm" (ngSubmit)="submitForm(filterForm.value)">
+    <div class="mt-1">
+        <div class="form-row">
+            <div class="input-group input-group-lg col-md-9">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" formControlName="searchTerm" class="form-control" aria-label="Large"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Search by Word Or Synonym">
+            </div>
+
+            <div class="btn-group btn-group-lg col-md-3" role="group" aria-label="...">
+                <button type="button" class="btn btn-success" type="submit">Search</button>
+                <button type="button" class="btn btn-danger" (click)="clearForm()">Clear</button>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-9">&nbsp;</div>
+            <div class="col-md-3 float-left custom-control-pos">
+                <div class="custom-control-lg custom-control custom-checkbox">
+                    <input class="custom-control-input" id="checkbox-large" type="checkbox"
+                        formControlName="includeTransitive" />
+                    <label class="custom-control-label text-secondary" for="checkbox-large">
+                        Include transative rule
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

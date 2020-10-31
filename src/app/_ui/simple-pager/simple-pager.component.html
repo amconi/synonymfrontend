@@ -1,0 +1,37 @@
+﻿<div class="col-md-12">
+
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+            <li class="page-item">
+                <button class="page-link" [disabled]="pager.currentPage == 1 || isBusy" (click)="firstPage()">First
+                    Page</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" [disabled]="pager.currentPage == 1 || isBusy"
+                    (click)="previousPage(pager.currentPage)"> &lt; Previous Page</button>
+            </li>
+            <span class="align-middle">
+                <small class="text-muted">
+                    &nbsp;&nbsp; Page <b>{{ pager.currentPage}}</b> Out Of <b>{{ pager.totalPages }}</b> &nbsp;&nbsp;
+                </small>
+            </span>
+            <!-- <li class="page-item">
+                <button class="page-link" (click)="lastPage(pager.currentPage)"> {{ pager.currentPage + 2 >= pager.totalPages ? pager.totalPages - 2 : pager.currentPage + 1 }}</button>
+            </li>
+            <li class="page-item active">
+                <button class="page-link" (click)="lastPage(pager.currentPage)"> {{ pager.currentPage + 3 >= pager.totalPages ? pager.totalPages - 1 : pager.currentPage + 1 }}</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" (click)="lastPage(pager.currentPage)"> {{ pager.currentPage + 4 >= pager.totalPages ? pager.totalPages : pager.currentPage + 1 }}</button>
+            </li> -->
+            <li class="page-item">
+                <button class="page-link" [disabled]="pager.currentPage == pager.totalPages || isBusy"
+                    (click)="nextPage(pager.currentPage)">Next Page &gt;</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" [disabled]="pager.currentPage == pager.totalPages || isBusy"
+                    (click)="lastPage()">Last Page</button>
+            </li>
+        </ul>
+    </nav>
+</div>

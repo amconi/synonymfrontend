@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <p class="text-left">Synonyms search tool</p>
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+                <span class="navbar-toggler-icon"></span>
+                <div class="d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
+                    <ul class="navbar-nav flex-grow">
+                        <li class="nav-item" [routerLinkActive]="['link-active']"
+                            [routerLinkActiveOptions]="{ exact: true }" *ngIf="isExpanded">
+                            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+                        </li>
+                        <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isExpanded">
+                            <a class="nav-link text-dark" routerLink="/synonym">Synonyms</a>
+                        </li>
+                    </ul>
+                </div>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
+                
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,85 @@
+<div class="container">
+    <h1 *ngIf="wordId > 0; else elseNew">Update</h1>
+    <ng-template #elseNew>
+        <h1>New</h1>
+    </ng-template>
+    <form [formGroup]="formWord" (ngSubmit)="updateForm()" novalidate>
+        <div class="form-row">
+            <div class="col-md-10">
+                <div class="form-group row">
+                    <label for="wordText" class="col-md-1 col-form-label">Word:</label>
+                    <div class="col-md-11">
+                        <input class="form-control" formControlName="wordText" id="wordText"
+                            [ngClass]="{ 'is-invalid': submittedFormWord && fw.wordText.errors }">
+                        <div class="mt-1">
+                            <div *ngIf="submittedFormWord && fw.wordText.errors">
+                                <p class="text-danger" *ngIf="fw.wordText.errors.required">Word can not be empty!</p>
+                                <p class="text-danger" *ngIf="fw.wordText.errors.minlength">Word field must be at least
+                                    2 characters!
+                                </p>
+                                <p class="text-danger" *ngIf="fw.wordText.errors.maxlength">Word field must be 255
+                                    characters max!
+                                </p>
+                                <p class="text-danger" *ngIf="fw.wordText.errors.pattern">Only letters are allowed
+                                    without space!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-block float-right" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+    <form [formGroup]="formSynonym" (ngSubmit)="addSynonym()" novalidate>
+        <div class="form-row">
+            <div class="col-md-10">
+                <div class="form-group row">
+                    <label for="synonym" class="col-md-1 col-form-label">Synonym:</label>
+                    <div class="col-md-11">
+                        <input class="form-control" formControlName="synonym" id="synonym"
+                            [ngClass]="{ 'is-invalid': submittedFormSynonym && fs.synonym.errors }">
+                        <div class="mt-1">
+                            <div *ngIf="submittedFormSynonym && fs.synonym.errors">
+                                <p class="text-danger" *ngIf="fs.synonym.errors.required">Synonym can not be empty!</p>
+                                <p class="text-danger" *ngIf="fs.synonym.errors.minlength">Synonym field must be at
+                                    least 2 characters!
+                                </p>
+                                <p class="text-danger" *ngIf="fs.synonym.errors.maxlength">Synonym field must be 255
+                                    characters max!
+                                </p>
+                                <p class="text-danger" *ngIf="fs.synonym.errors.pattern">Only letters are allowed
+                                    without space!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-secondary btn-block float-right text-left">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Synonym
+                </button>
+            </div>
+        </div>
+
+        <div class="jumbotron jumbotron-fluid" *ngIf="synonymWord?.synonyms?.length > 0">
+            <div class="container">
+                <div class="card">
+                    <ul class="list-group" *ngFor="let item of synonymWord.synonyms">
+                        <li class="list-group-item align-text-bottom">{{ item.synonymText }}
+                            <a class="btn btn-danger fa-pull-right" (click)="removeSynonym(item.synonymId)">
+                                <i class="fa fa-trash-o"></i> Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="form-group text-right">
+        <a href="#" routerLink="/word" class="btn btn-light">Back</a>
+    </div>
+</div>

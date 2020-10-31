@@ -1,0 +1,15 @@
+<home-filter (onSubmit)="filterWords($event)" (onClear)="clearResults()"></home-filter>
+<div *ngIf="emptyResult" class="mt-1">
+    <h2>No search results!</h2>
+</div>
+<div class="card-columns">
+    <div class="card mb-3 mt-3 text-left" *ngFor="let search of searchResults">
+        <div class="card-header">
+            <i class="fa fa-list"></i> &nbsp;<strong>{{ search.wordText }}</strong>
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let synonym of search.synonyms">
+            <li class="list-group-item"><i class="fa fa-minus"></i> &nbsp;<i>{{ synonym.synonymText | titlecase }}</i></li>
+        </ul>
+    </div>
+</div>
+<loader *ngIf="showLoading"></loader>
