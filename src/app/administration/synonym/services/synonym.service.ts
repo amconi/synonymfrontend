@@ -25,9 +25,7 @@ export class SynonymService {
 
     return this.http.get<ResponseGrid<SearchResult>>(`${environment.apiUrl}/word/grid`, { params: params })
       .pipe(
-        map(results => { 
-          console.log(results)
-          return results }),
+        map(results => { return results }),
         catchError(this.handleError)
       );
 

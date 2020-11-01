@@ -156,6 +156,7 @@ export class SynonymEditComponent implements OnInit {
   }
 
   private addSynonymWithWord(selectedName: string) { // Add synonym with wordId
+    this.submittedFormSynonym = true;
     const data = new CreateSynonym();
     data.synonymText = selectedName;
     data.wordId = this.wordId;
@@ -164,7 +165,10 @@ export class SynonymEditComponent implements OnInit {
         this.toastr.error(result.errorMessage);   // Show error message
       } else {
         this.synonymWord.synonyms.push({ synonymId: result.id, synonymText: selectedName }) // add synonym to ui
-        this.resetForm(this.formSynonym);
+        this.submittedFormSynonym = false;
+        //this.resetForm(this.formSynonym)
+        this.formSynonym.get("synonym").setValue('')
+
         this.toastr.success('Synonym is added successfully!');   // Show succes message when data is successfully submited
       }
     },
@@ -178,6 +182,8 @@ export class SynonymEditComponent implements OnInit {
     form.reset();
     Object.keys(form.controls).forEach(key => {
       form.get(key).setErrors(null);
+      form.get(key).markAsPristine;
+      form.get(key).markAsTouched({ onlySelf: true })
     });
   }
 }
